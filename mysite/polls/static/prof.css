@@ -1,0 +1,66 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styling for user header */
+.user-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.user-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.user-buttons .dropdown {
+    position: relative;
+}
+
+.user-buttons .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.user-buttons .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Styling for user info */
+.user-info {
+    margin-bottom: 20px;
+}
+
+.user-info h2 {
+    margin-bottom: 10px;
+}
+
+.user-info p {
+    margin: 5px 0;
+}
+
+/* Styling for profile sections */
+.p-section {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.p-section h2 {
+    margin-bottom: 10px;
+}

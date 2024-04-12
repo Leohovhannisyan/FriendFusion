@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Menu</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Account menu styling */
+        .account-menu {
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .account-menu .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center; /* Align items vertically */
+        }
+
+        .account-menu .logo img {
+            width: 50px; /* Adjust the size of the circular image */
+            height: 50px; /* Adjust the size of the circular image */
+            border-radius: 50%; /* This creates a circular shape */
+            margin-right: 10px; /* Add some spacing between the image and text */
+        }
+
+        .account-menu .menu-items {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .account-menu .menu-items a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .account-menu .menu-items a:hover {
+            background-color: #ddd;
+        }
+        
+        /* Dropdown menu styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: #333;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            border-radius: 5px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        
+        /* Log out button styling */
+        .logout-btn {
+            background-color: #f44336;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        /* Create post button styling */
+        .create-post-btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .create-post-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="account-menu">
+            <div class="logo">
+                {% if user_image %}
+                <img src="{{ user_image.url }}">
+                {% else %}
+                <img  src="{% static 'images/profile_image.jpg' %}"  alt="Profile Image">
+                {% endif %}
+                Welcome {{ user_first_name }}
+            </div>
+            <div class="menu-items">
+                <a href="#">News</a>
+                <a href="#">Chats</a>
+                <div class="dropdown">
+                    <a href="{% url 'group_menu' %}" class="dropdown-toggle">Groups</a>
+                    <div class="dropdown-content">
+                        {% for group in groups %}
+                            <a href="#">{{ group.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">Account</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'profile_info' %}">Profile</a>
+                        <a href="#">Friends</a>
+                        <a href="#">Chats</a>
+                    </div>
+                </div>
+                <a href="{% url 'post_menu' %}" class="create-post-btn">Create Post</a>
+                <form action="{% url 'user_log_out' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">Log Out</button>
+                </form>
+            </div>

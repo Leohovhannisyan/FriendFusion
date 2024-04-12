@@ -1,0 +1,115 @@
+"FriendFusion" Website Documentation: 
+
+Project Description:
+A social media website is an online platform for users to create profiles and share content with others. Users can connect with friends, engage in interactions such as likes and comments, and join communities based on shared interests. These platforms often feature news feeds to keep users updated on their connections' activities.
+
+Key Features:
+1) Create account
+2) Customize profile
+3)Add friends
+4)Make groups
+5)Share content by making posts
+6) Create and participate in different quizes
+
+
+Project structures:
+1) Register page
+2) Log in page
+3) Main page
+4) Profile page
+5) Profile customization page
+6) Page wich shows your groups
+7) Group creation page
+8) Aditional page for every group you are part of
+8) Form to create post
+9) Page to see news uploaded from site author
+10)Page wich shows chat between friends
+11) Page for quizes
+
+
+Project functionality -> Api list
+
+Api-s wich are created to browse pages:
+1) log - browses log in page
+2) reg - browses register page
+3) main- browses main page
+ 
+Api-s about user
+4) register - creates User and PollUser obj and addds it in db
+5) log_in - check if PollUser obj with inserted adata exists and browses main page
+6) log_out - logs out User from website
+
+Api-s about groups
+4) group_menu - browses group page
+5) create_group_view - creates group obj and add data in db
+
+Api-s about posts
+6) post-menu - browses form to create post
+7) submit_post - creates post obj and added in db
+
+Api-s about profile
+7) profile data - browses template wich shows user his own information
+8) profile info - shows user profile with additional data he added in form
+9) customize_profile - renders template to customize user profile  and add info to PollUser obj
+
+
+Database: 
+	1)FFUser:
+	  user - OnetoOneField
+	  subscription - CharField
+	  age - IntegerField
+	  country - CharField
+	  city - CharField
+	  profile_picture - ImageField
+	
+	2)Posts
+	  title - CharField
+	  topic - CharField
+	  image - ImageField
+	  author - ForeignKey
+	  like - IntegerField
+	  dislike - IntegerField
+	  created_at - DateTimeField
+	
+	3)Groups
+	  name - CharField
+	  members - ManyToMany
+	  admins - ManyToMany
+	  
+	4)Friendship
+	  user_1 - ForeignKey
+	  user_2 - ForeignKey
+	  status - CharField
+	  
+	5)Question
+	  qusetion_text - Charfield
+	  pub_date - DatetimeField
+	  
+	
+	6)Choice
+	  question - Foreign key
+	  choice_text - CharField
+	  votes - IntegerField
+	
+	7)Quiz
+	  answer_1 - CharField
+	  answer_2 - CharField
+	  answer_3 - CharField
+          answer_4- 
+          correct_answer - CharField
+          
+       8) Comment
+          user - ForeignKey
+          text - CharField
+          created at - DatetimeField
+          updated at - DatetimeField
+          
+       9) Notification
+          user - Foreign key
+          notfication_text - Charfield
+          
+       10) Achivements
+          achievement_1 - CharField
+          achievement_2 - CharField
+          
+          

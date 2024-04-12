@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'profile_style.css' %}">
+</head>
+<body>
+    <h1>User Profile</h1>
+    <form method="post" action="{% url 'profile_data' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Upload Profile Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required><br><br>
+        <label for="name">Email:</label><br>
+        <input type="text" id="email" name="email"><br><br>
+        <label for="surname">Age:</label><br>
+        <input type="text" id="age" name="age"><br><br>
+        <label for="country">Country:</label><br>
+        <input type="text" id="country" name="country"><br><br>
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+</link>
