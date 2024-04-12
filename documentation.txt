@@ -61,6 +61,11 @@ Database:
 	  country - CharField
 	  city - CharField
 	  profile_picture - ImageField
+          is_removed - BolleanField
+
+        2) ApiKEy
+           user - OneToOneField
+           apikey - CharField
 	
 	2)Posts
 	  title - CharField
