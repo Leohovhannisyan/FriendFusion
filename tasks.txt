@@ -1,0 +1,5 @@
+1) Make notifications system
+2) Create algorithm for recomendations
+3) Create group chat
+4) Create chat between users
+
