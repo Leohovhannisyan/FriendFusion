@@ -14,6 +14,7 @@ def reg(request):
 
 def main_menu(request):
     user_first_name = request.session.get('username')
+   
     context = {
         "user_first_name": user_first_name,
         

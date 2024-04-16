@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from polls.api.user import register, log_in, user_log_out
 from polls.views  import main_menu, log, reg
 from polls.api.profile import profile_info, profile_data, customize_profile
-from polls.api.group import group_menu, create_group_view
+from polls.api.group import group_menu, create_group_view, group_form
 from polls.api.post import  post_menu, submit_post
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,6 +35,7 @@ urlpatterns = [
     path("page/", profile_data, name="profile_data"),
     path("group/", group_menu, name="group_menu"),
     path("mainn/", create_group_view, name="create_group_view"),
+    path("submitgroup/", group_form, name="group_form"),
     path("add", customize_profile, name="customize_profile"),
     path("post_menu/", post_menu, name="post_menu"),
     path("submit/",submit_post,name='submit_post'),

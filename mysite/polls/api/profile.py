@@ -15,7 +15,10 @@ def profile_info(request):
     return render(request,'profile.html', context=context)
 
 def customize_profile(request):
-    return render(request, 'custom_prof.html')
+    user_name = request.session.get("username")
+    fuser = FFUser.objects.get(user=User.objects.get(username=user_name))
+    context = {"image":fuser.profile_image,"user_name" : user_name, "age":fuser.age, "city": fuser.city, "country":fuser.country}
+    return render(request, 'custom_prof.html',context)
 
 def profile_data(request):
     if request.method == 'POST':

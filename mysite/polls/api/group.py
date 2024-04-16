@@ -9,6 +9,8 @@ from polls.models import Group
 def group_menu(request):
     return render(request, "group_menu.html")
 
+def group_form(request):
+    return render(request,"group_form.html")
 def create_group_view(request):
     if request.method == "POST":
         name = request.POST["group_name"]
@@ -22,4 +24,4 @@ def create_group_view(request):
 
         return redirect("main_menu")
 
-    return render(request, 'create_group_form.html')
+    return render(request, 'group_form.html')

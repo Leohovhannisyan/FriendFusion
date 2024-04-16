@@ -112,7 +112,7 @@ Database:
        9) Notification
           user - Foreign key
           notfication_text - Charfield
-          
+          notif _type 
        10) Achivements
           achievement_1 - CharField
           achievement_2 - CharField

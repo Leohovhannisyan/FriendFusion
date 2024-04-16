@@ -1,5 +1,39 @@
-<form action="{% url 'customize_profile' %}"  method="post">
-     {% csrf_token %}
-    <!-- Your form fields here -->
-    <button type="submit">Submit</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Menu</title>
+    <style>
+        /* Define a CSS class for the profile image */
+        .profile-image {
+            max-width: 200px; /* Set the maximum width of the image */
+            max-height: 200px; /* Set the maximum height of the image */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ user_first_name }}</h1>
+    {% if image %}
+        <!-- Apply the CSS class to the profile image -->
+        <img src="{{ image }}" alt="Profile Image" class="profile-image">
+    {% else %}
+        <!-- If no image is available, display a default image with the CSS class -->
+        <img src="{% static 'images/profile_image.jpg' %}" alt="Profile Image" class="profile-image">
+    {% endif %}
+
+    <!-- Display user's country, city, and age -->
+    <ul>
+        <li>Country: {{ country }}</li>
+        <li>City: {{ city }}</li>
+        <li>Age: {{ age }}</li>
+    </ul>
+
+    <form action="{% url 'customize_profile' %}"  method="post">
+         {% csrf_token %}
+        <!-- Your form fields here -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
