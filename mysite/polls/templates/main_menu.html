@@ -11,6 +11,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            position: relative; /* Needed for absolute positioning of the main button */
         }
         
         .container {
@@ -120,6 +121,24 @@
         .create-post-btn:hover {
             background-color: #0056b3;
         }
+
+        /* Main button styling */
+        .main-btn {
+            position: absolute;
+            top: 20px; /* Adjust the distance from the top */
+            right: 20px; /* Adjust the distance from the right */
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .main-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -129,19 +148,16 @@
                 {% if user_image %}
                 <img src="{{ user_image.url }}">
                 {% else %}
-                <img  src="{% static 'images/profile_image.jpg' %}"  alt="Profile Image">
+                <img  src="static/images/profile_image.jpg"  alt="Profile Image">
                 {% endif %}
                 Welcome {{ user_first_name }}
             </div>
             <div class="menu-items">
-                <a href="#">News</a>
+		    <a href="{% url 'show_news' %}">News</a>
                 <a href="#">Chats</a>
                 <div class="dropdown">
                     <a href="{% url 'group_menu' %}" class="dropdown-toggle">Groups</a>
                     <div class="dropdown-content">
-                        {% for group in groups %}
-                            <a href="#">{{ group.name }}</a>
-                        {% endfor %}
                     </div>
                 </div>
                 <div class="dropdown">
@@ -149,7 +165,7 @@
                     <div class="dropdown-content">
                         <a href="{% url 'profile_info' %}">Profile</a>
                         <a href="#">Friends</a>
-                        <a href="#">Chats</a>
+			<a href="#">Chats</a>
                     </div>
                 </div>
                 <a href="{% url 'post_menu' %}" class="create-post-btn">Create Post</a>
@@ -158,3 +174,16 @@
                     <button type="submit" class="logout-btn">Log Out</button>
                 </form>
             </div>
+        </div>
+	<form action="{% url 'main_menu' %}"> 
+        <button class="main-btn">Main</button
+	</form>
+    </div>
+{% if title %}
+   <a> {{ title }} </a>
+   <a> {{ topic }} </a>
+   <a> by {{ author }} </a>
+   <img src="{{ image.url }}">
+{% endif %}   
+</body>
+</html>

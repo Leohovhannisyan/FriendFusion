@@ -18,15 +18,20 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from polls.api.user import register, log_in, user_log_out
-from polls.views  import main_menu, log, reg
+from polls.views  import main_menu, log, reg,redirect_main
 from polls.api.profile import profile_info, profile_data, customize_profile
 from polls.api.group import group_menu, create_group_view, group_form
 from polls.api.post import  post_menu, submit_post
+from polls.api.news import show_news
+from polls.api.chat import show_group_chat
+from django.urls import re_path
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/log', log, name='log'),
     path("reg/",reg,name='reg'),
-    path("main/",main_menu, name = 'main_menu'),
+    re_path("main/(?P<post_name>[\w-]*)?",main_menu,name = 'main_menu'),
+    path("redirect/", redirect_main, name="redirect_main"),
     path('check/', reg,name="reg"),
     path("register",register, name ='register'),
     path("log_in",log_in,name="log_in"),
@@ -39,6 +44,8 @@ urlpatterns = [
     path("add", customize_profile, name="customize_profile"),
     path("post_menu/", post_menu, name="post_menu"),
     path("submit/",submit_post,name='submit_post'),
+    path("news/", show_news, name="show_news"),
+    path("group_chat/<str:group_name>/", show_group_chat, name="show_group_chat")
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,10 +14,10 @@
     </style>
 </head>
 <body>
-    <h1>Welcome, {{ user_first_name }}</h1>
+    <h1>Welcome, {{ username}}</h1>
     {% if image %}
         <!-- Apply the CSS class to the profile image -->
-        <img src="{{ image }}" alt="Profile Image" class="profile-image">
+	<img src="{{ image.url }}" alt="Profile Image" class="profile-image">
     {% else %}
         <!-- If no image is available, display a default image with the CSS class -->
         <img src="{% static 'images/profile_image.jpg' %}" alt="Profile Image" class="profile-image">
@@ -33,7 +33,7 @@
     <form action="{% url 'customize_profile' %}"  method="post">
          {% csrf_token %}
         <!-- Your form fields here -->
-        <button type="submit">Submit</button>
+        <button type="customize">Submit</button>
     </form>
 </body>
 </html>

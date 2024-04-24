@@ -1,0 +1,11 @@
+<h2>New</h2>
+
+{% for new in news_list %}
+  <!-- Display news item details -->
+  <a>{{ new.title }}</a>
+  <a>{{ new.topic }}</a>
+  <img src="{{ new.image.url }}">
+  <a>{{ new.like }}</a>
+  <a>{{ new.dislike }}</a>
+  <a>{{ new.created_at }}</a>
+{% endfor %}

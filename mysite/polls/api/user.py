@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
@@ -51,7 +50,7 @@ def log_in(request):
             return redirect('main_menu')
 
         else:
-            return render(request, 'login.html', context={'error_message': 'Wrong username or password'})
+            return render(request, 'log_in.html', context={'error_message': 'Wrong username or password'})
 
 
 

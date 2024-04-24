@@ -14,7 +14,7 @@ class Question(models.Model):
     question_text = models.CharField(max_length=50)
     pub_date = models.DateTimeField()
     status = models.PositiveSmallIntegerField(choices=STATUS)
-    voters = models.ManyToManyField(FFUser, related_name="voters", null=True)
+    voters = models.ManyToManyField(FFUser, related_name="voters")
 
     def __str__(self):
         return "{} - {}".format(self.question_text, self.get_status_display())

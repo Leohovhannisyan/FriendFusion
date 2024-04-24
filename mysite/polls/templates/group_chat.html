@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group Chat</title>
+  <style>
+    /* Basic styling for the chat container */
+    .chat-container {
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Styling for the members list container */
+    .members-container {
+      flex: 1;
+      background-color: #f0f0f0;
+      overflow-y: auto;
+    }
+
+    /* Styling for the member item */
+    .member-item {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Styling for selected member */
+    .selected {
+      background-color: #ccc;
+    }
+
+    /* Styling for the messages container */
+    .messages-container {
+      flex: 3;
+      padding: 20px;
+      background-color: #fff;
+      overflow-y: auto;
+    }
+
+    /* Styling for individual message */
+    .message {
+      margin-bottom: 10px;
+    }
+
+    /* Styling for sender's name */
+    .sender {
+      font-weight: bold;
+    }
+
+    /* Styling for message content */
+    .content {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <!-- Members list container -->
+    <div class="members-container">
+      <!-- Member items -->
+      <div> {{ name }} <div>
+      {% for member in member_list %}
+          <div>{{ member.user.username }}<button>
+      {% endfor %}
+    </div>
+
+    <!-- Messages container -->
+    <div class="messages-container">
+      <!-- Messages will be displayed here when a member is clicked -->
+    </div>
+  </div>
+</body>
+</html>

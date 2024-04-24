@@ -50,6 +50,19 @@
         .member-count {
             color: #888;
         }
+
+        /* Style for the main button */
+        .main-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +73,13 @@
     <form action="{% url 'group_form' %}">
     <button class="create-group-button">Create Group</button>
     </form>
-
+{% for group in groups %}
+    <form action="{% url 'show_group_chat' group_name=group.name %}">
+    <button>{{ group.name }}<button>
+    </form>
+{% endfor %}
+    <form action="{% url 'redirect_main' %}">
+    <button class="main-button" name="main">Main Button</button>
+    </form>
 </body>
 </html>

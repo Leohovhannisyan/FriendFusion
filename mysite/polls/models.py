@@ -5,3 +5,5 @@ from .user import FFUser
 from .question import Question
 from .choice import Choice
 from .comment import Comment
+from .quiz import Quiz
+from .new import New

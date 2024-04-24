@@ -25,6 +25,10 @@
             </div>
         </form>
         <p>Don't have an account? <a href="{% url 'reg' %}">Register</a></p>
+    
+{% if error_message %}
+        <a> {{ error_message }}<a>
     </div>
+{% endif %}
 </body>
 </html>

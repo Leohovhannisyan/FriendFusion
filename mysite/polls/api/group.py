@@ -7,7 +7,11 @@ from django.contrib.auth import authenticate, logout
 from django.urls import reverse
 from polls.models import Group
 def group_menu(request):
-    return render(request, "group_menu.html")
+    username = request.session.get('username')
+    user = User.objects.get(username=username)
+    fuser = FFUser.objects.get(user=user)
+    groups = Group.objects.filter(members=fuser)
+    return render(request, "group_menu.html",{"groups":groups})
 
 def group_form(request):
     return render(request,"group_form.html")
@@ -22,6 +26,6 @@ def create_group_view(request):
         group.members.add(admin)
         group.save()
 
-        return redirect("main_menu")
+        return redirect("group_menu")
 
     return render(request, 'group_form.html')
