@@ -1,6 +1,6 @@
 from django.db import models
 from  .user import FFUser
-
+from .comment import Comment
 from django.contrib import admin
 class Post(models.Model):
     title = models.CharField(max_length=120)
@@ -9,6 +9,7 @@ class Post(models.Model):
     author = models.ForeignKey(FFUser, on_delete=models.CASCADE)
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
+    comment = models.ManyToManyField(Comment)
     created_at = models.DateTimeField(auto_now_add=True)
 
 @admin.register(Post)

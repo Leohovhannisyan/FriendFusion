@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, logout
 from django.urls import reverse
 from .group import  Group
 
+def landing_page(request):
+    return render(request, 'landing.html')
 def log(request):
     return render(request, 'log_in.html')
 def reg(request):
@@ -23,7 +25,6 @@ def main_menu(request,post_name):
         "user_first_name": user_first_name,
         "user_image" : user_image,  
     }
-    
     if post_name:
         post = Post.objects.get(title=post_name)
         topic = post.topic

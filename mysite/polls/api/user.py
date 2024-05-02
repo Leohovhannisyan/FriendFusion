@@ -54,6 +54,3 @@ def log_in(request):
 
 
 
-def user_log_out(request):
-    logout(request)
-    return HttpResponseRedirect("/api/log")

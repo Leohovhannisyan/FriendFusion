@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Basic styling */
         body {
@@ -15,44 +18,56 @@
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            width: 100%; /* Make container full-width */
+            padding: 10px 0; /* Adjust vertical padding */
+            background-color: #f4f4f4; /* Add background color to container */
+            padding: 0px 0;
         }
         
         /* Account menu styling */
         .account-menu {
-            background-color: #f4f4f4;
-            padding: 10px 20px;
+            max-width: 1200px; /* Limit max width of the menu */
+            margin: 0 auto; /* Center align the menu */
+            padding: 10px 20px; /* Adjust horizontal padding */
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: center; /* Center align items vertically */
+            justify-content: flex-end;
         }
         
         .account-menu .logo {
-            font-size: 24px;
+            font-size: 20px; /* Decrease font size */
             font-weight: bold;
             display: flex;
-            align-items: center; /* Align items vertically */
+            align-items: stretch; /* Align items vertically */
+            justify-content: flex-end;
+        }
+
+        .account-menu .logo a {
+            text-decoration: none; /* Remove underline from anchor tag */
         }
 
         .account-menu .logo img {
-            width: 50px; /* Adjust the size of the circular image */
-            height: 50px; /* Adjust the size of the circular image */
+            width: 40px; /* Adjust the size of the circular image */
+            height: 40px; /* Adjust the size of the circular image */
             border-radius: 50%; /* This creates a circular shape */
+            border: none; /* Remove border */
+            object-fit: cover; /* Ensure the image covers its container */
             margin-right: 10px; /* Add some spacing between the image and text */
         }
 
         .account-menu .menu-items {
             display: flex;
-            gap: 20px;
+            gap: 15px; /* Decrease gap between menu items */
             align-items: center;
+            justify-content: flex-end; /* Align items to the right */
+            flex-grow: 1; /* Allow items to grow to take up space */
         }
         
         .account-menu .menu-items a {
             text-decoration: none;
             color: #333;
-            padding: 8px 12px;
+            padding: 5px 8px; /* Adjust padding */
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
@@ -96,7 +111,7 @@
         .logout-btn {
             background-color: #f44336;
             color: #fff;
-            padding: 8px 12px;
+            padding: 5px 8px; /* Adjust padding */
             border: none;
             border-radius: 5px;
             text-decoration: none;
@@ -111,7 +126,7 @@
         .create-post-btn {
             background-color: #007bff;
             color: #fff;
-            padding: 8px 12px;
+            padding: 5px 8px; /* Adjust padding */
             border: none;
             border-radius: 5px;
             text-decoration: none;
@@ -127,17 +142,17 @@
             position: absolute;
             top: 20px; /* Adjust the distance from the top */
             right: 20px; /* Adjust the distance from the right */
-            background-color: #007bff;
-            color: #fff;
-            padding: 8px 12px;
+            background-color: #007bff; /* Fallback color */
+            background-image: url('{% static "images/button_image.png" %}'); /* Replace "button_image.png" with your button image */
+            background-size: cover;
+            background-position: center;
+            width: 50px; /* Adjust the width of the button */
+            height: 50px; /* Adjust the height of the button */
             border: none;
-            border-radius: 5px;
+            border-radius: 50%; /* Make it circular */
             text-decoration: none;
             transition: background-color 0.3s ease;
-        }
-        
-        .main-btn:hover {
-            background-color: #0056b3;
+            outline: none; /* Remove outline */
         }
     </style>
 </head>
@@ -145,45 +160,41 @@
     <div class="container">
         <div class="account-menu">
             <div class="logo">
-                {% if user_image %}
-                <img src="{{ user_image.url }}">
-                {% else %}
-                <img  src="static/images/profile_image.jpg"  alt="Profile Image">
-                {% endif %}
-                Welcome {{ user_first_name }}
+                <a href="{% url 'main_menu' %}">
+                    <img src="{% static 'images/logo.jpg' %}" >
+                </a>
             </div>
             <div class="menu-items">
-		    <a href="{% url 'show_news' %}">News</a>
-                <a href="#">Chats</a>
                 <div class="dropdown">
-                    <a href="{% url 'group_menu' %}" class="dropdown-toggle">Groups</a>
+                    <a href="{% url 'show_news' %}" class="dropdown-toggle"><i class="fa-solid fa-envelope"></i></a>
                     <div class="dropdown-content">
                     </div>
                 </div>
+                <a href="#">Chats</a>
+                <div class="dropdown">
+                    <a href="{% url 'group_menu' %}" class="dropdown-toggle"><i class="fa-solid fa-users-line"></i></a>
+                    <div class="dropdown-content">
+                    </div>
+                </div>
+            </div>
+            <div class="menu-items">
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle">Account</a>
                     <div class="dropdown-content">
                         <a href="{% url 'profile_info' %}">Profile</a>
                         <a href="#">Friends</a>
-			<a href="#">Chats</a>
+                        <a href="#">Chats</a>
                     </div>
                 </div>
                 <a href="{% url 'post_menu' %}" class="create-post-btn">Create Post</a>
-                <form action="{% url 'user_log_out' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="logout-btn">Log Out</button>
-                </form>
             </div>
         </div>
-	<form action="{% url 'main_menu' %}"> 
-        <button class="main-btn">Main</button
-	</form>
+        {% if title %}
+           <a> {{ title }} </a>
+           <a> {{ topic }} </a>
+           <a> by {{ author }} </a>
+           <img src="{{ image.url }}">
+        {% endif %}   
     </div>
-{% if title %}
-   <a> {{ title }} </a>
-   <a> {{ topic }} </a>
-   <a> by {{ author }} </a>
-   <img src="{{ image.url }}">
-{% endif %}   
 </body>
 </html>

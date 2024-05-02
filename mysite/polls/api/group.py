@@ -18,14 +18,19 @@ def group_form(request):
 def create_group_view(request):
     if request.method == "POST":
         name = request.POST["group_name"]
-        admin_name = request.session.get("username") 
-        user = User.objects.get(username=admin_name)
-        admin = FFUser.objects.get(user=user)
-        group = Group.objects.create(name=name)
-        group.admins.add(admin)
-        group.members.add(admin)
-        group.save()
+        existing_groups = Group.objects.filter(name=name)
+        if not existing_groups:
+            admin_name = request.session.get("username") 
+            user = User.objects.get(username=admin_name)
+            admin = FFUser.objects.get(user=user)
+            group = Group.objects.create(name=name)
+            group.admins.add(admin)
+            group.members.add(admin)
+            group.save()
 
-        return redirect("group_menu")
+            return redirect("group_menu")
+        else:
+            context = {"message":"This group already exists"}
+            return render(request,"group_form.html",context)
 
     return render(request, 'group_form.html')

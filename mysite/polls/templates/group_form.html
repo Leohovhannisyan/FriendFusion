@@ -47,6 +47,9 @@
              {% csrf_token %}
             <input type="text" name="group_name" placeholder="Enter group name" required>
             <button type="submit">Create Group</button>
+	    {% if message %}
+	    	<a>{{ message }}</a>
+	    {% endif %}
         </form>
     </div>
 </body>
