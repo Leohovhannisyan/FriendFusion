@@ -23,7 +23,7 @@ from polls.api.profile import profile_info, profile_data, customize_profile
 from polls.api.group import group_menu, create_group_view, group_form
 from polls.api.post import  post_menu, submit_post
 from polls.api.news import show_news
-from polls.api.chat import show_group_chat
+from polls.api.chat import show_group_chat, show_friend_chats,friend_room
 from django.urls import re_path
 
 urlpatterns = [
@@ -45,7 +45,9 @@ urlpatterns = [
     path("post_menu/", post_menu, name="post_menu"),
     path("submit/",submit_post,name='submit_post'),
     path("news/", show_news, name="show_news"),
-    path("group_chat/<str:group_name>/", show_group_chat, name="show_group_chat")
+    path("group_chat/<str:group_name>/", show_group_chat, name="show_group_chat"),
+    path('friends/', show_friend_chats, name='show_friend_chats'),
+    path('friendroom/<int:room_id>/', friend_room, name='friend_room'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

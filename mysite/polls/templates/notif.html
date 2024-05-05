@@ -1,0 +1,27 @@
+<script>
+    // Establish WebSocket connection
+    const notificationSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/{{ roomId }}/');
+
+    // Handle incoming messages (notifications)
+    notificationSocket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        if (data.type === 'notification') {
+            // Create a new button element for the notification
+            const button = document.createElement('button');
+            button.className = 'notification-button';
+            button.textContent = data.message;
+
+            // Attach a click event listener to the button
+            button.addEventListener('click', function() {
+                // Redirect to the send_message_to_user_2 URL when the button is clicked
+                window.location.href = "#";
+            });
+
+            // Append the button to the notification-bell anchor
+            document.getElementById('notification-bell').appendChild(button);
+        }
+    };
+</script>
+
+</body>
+</html>

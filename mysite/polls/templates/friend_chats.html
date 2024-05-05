@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Friend List</title>
+</head>
+<body>
+    <h1>Friend List</h1>
+    <ul>
+        {% for friend in friends %}
+            <li>
+                {{ friend.user_2.user.username }}
+                <form method="post" action="{% url 'friend_room' room_id=friend.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Message</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

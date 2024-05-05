@@ -7,3 +7,4 @@ from .choice import Choice
 from .comment import Comment
 from .quiz import Quiz
 from .new import New
+from .friendship import FriendShip

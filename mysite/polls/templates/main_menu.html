@@ -154,9 +154,15 @@
             transition: background-color 0.3s ease;
             outline: none; /* Remove outline */
         }
+
     </style>
 </head>
 <body>
+    <!-- Notification bell -->
+    <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+    </div>
+
     <div class="container">
         <div class="account-menu">
             <div class="logo">
@@ -170,7 +176,7 @@
                     <div class="dropdown-content">
                     </div>
                 </div>
-                <a href="#">Chats</a>
+		<a href="{% url 'show_friend_chats' %}">Chats</a>
                 <div class="dropdown">
                     <a href="{% url 'group_menu' %}" class="dropdown-toggle"><i class="fa-solid fa-users-line"></i></a>
                     <div class="dropdown-content">
@@ -183,7 +189,6 @@
                     <div class="dropdown-content">
                         <a href="{% url 'profile_info' %}">Profile</a>
                         <a href="#">Friends</a>
-                        <a href="#">Chats</a>
                     </div>
                 </div>
                 <a href="{% url 'post_menu' %}" class="create-post-btn">Create Post</a>
@@ -196,5 +201,5 @@
            <img src="{{ image.url }}">
         {% endif %}   
     </div>
-</body>
+
 </html>
