@@ -135,3 +135,21 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+#Send Email
+EMAIL_HOST = "localhost"
+EMAIL_PORT = "1025"
+EMAIL_HOST_USER = 'hovhannisyanleo4@gmail.com'
+EMAIL_HOST_PASSWORD =''
+EMAIL_USER_TLS = False
+
+
+
+
+
+
+
+
+
+
+

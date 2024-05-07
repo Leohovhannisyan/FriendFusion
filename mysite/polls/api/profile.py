@@ -41,7 +41,14 @@ def profile_data(request):
         fuser.profile_image = profile_image
         fuser.save()
         user.save()
+        # sending mails 
+        send_mail(
+            "message_from FriendFusion",
+            "Thanks for contacting our platform",# message
+            "leohovhannisyan95@gmail.com", 
+            [email],
+            )
 
         return  redirect("main_menu")
     else:
-        return HttpResponseBadRequest("Invalid request method")
+        return render(request, "custom_prof.html")

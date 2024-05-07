@@ -8,3 +8,4 @@ from .comment import Comment
 from .quiz import Quiz
 from .new import New
 from .friendship import FriendShip
+from .postreview import PostReview

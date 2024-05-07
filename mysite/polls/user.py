@@ -5,7 +5,6 @@ from django.utils import timezone
 
 class FFUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    subscription = models.CharField(max_length=40, default="default_subscription")
     age = models.IntegerField(default = 0)
     country = models.CharField(max_length=120,default="Default country")
     city = models.CharField(max_length=120,default="Default city")

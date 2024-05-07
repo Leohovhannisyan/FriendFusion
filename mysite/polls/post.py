@@ -9,7 +9,7 @@ class Post(models.Model):
     author = models.ForeignKey(FFUser, on_delete=models.CASCADE)
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
-    comment = models.ManyToManyField(Comment)
+    comment = models.ForeignKey(Comment, on_delete = models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 @admin.register(Post)

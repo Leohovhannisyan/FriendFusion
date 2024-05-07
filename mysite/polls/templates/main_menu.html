@@ -56,6 +56,31 @@
             margin-right: 10px; /* Add some spacing between the image and text */
         }
 
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
         .account-menu .menu-items {
             display: flex;
             gap: 15px; /* Decrease gap between menu items */
@@ -158,17 +183,21 @@
     </style>
 </head>
 <body>
-    <!-- Notification bell -->
-    <div class="notification-bell">
-        <i class="fas fa-bell"></i>
-    </div>
-
     <div class="container">
         <div class="account-menu">
             <div class="logo">
                 <a href="{% url 'main_menu' %}">
                     <img src="{% static 'images/logo.jpg' %}" >
                 </a>
+            </div>
+            <!-- Search bar -->
+         
+            <div class="search-bar">
+                    <form action="{% url 'search_users' %}", method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="query" placeholder="Search...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
             </div>
             <div class="menu-items">
                 <div class="dropdown">
